@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGpt</title>
+    <link rel="icon" type="image/png" href="Photos/ChatGptLogo.png">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+     <style>
+      /* Apply the scrollbar styling to the sidebar container */
+      .sidebar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background-color: #303030; /* red-500 */
+        border-radius: 4px;
+      }
+      .sidebar::-webkit-scrollbar-track {
+        background-color: #181818; /* red-200 */
+      }
+      /* Firefox compatibility */
+      .sidebar {
+        scrollbar-width: auto;
+        scrollbar-color: #303030 #181818;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="h-[100vh] w-[100vw] flex flex-row">
+      <!-- side Bar -->
+      <div class="h-[100vh] w-[17vw] bg-[#181818]  overflow-y-scroll sidebar flex flex-col justify-between">
+      <div class=" fixed z-100 w-[16.2vw] bg-[#181818]  ">
+        <div class="text-white flex flex-row justify-between items-center p-4">
+          <a href="https://chatgpt.com/"><img src="Photos/ChatGptLogo.png " class="h-[4vh] w-[4vh]"></a>
+          <span class="material-symbols-outlined cursor-pointer text-[#8E8E8E]">dock_to_right</span>
+        </div>
+        <div class="text-white text-sm ml-3 font-light ">
+        <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer ">
+         <i class="fa-solid fa-pen-to-square font-light"></i>
+          <p>New Chat</p>
+        </div>
+         <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer">
+       <i class="fa-solid fa-magnifying-glass"></i>
+          <p>Search chats</p>
+        </div>
+        <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer">
+         <i class="fa-solid fa-photo-film"></i>
+          <p>Library</p>
+        </div>
+        </div>
+      </div>
+      
+      <div class="mt-50">
+        <div class="text-white text-sm ml-3 font-light my-4">
+          <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer ">
+           <i class="fa-regular fa-circle-play"></i>
+            <p>Sora</p>
+          </div>
+          <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer ">
+            <span class="material-symbols-outlined text-xs">grid_view</span>
+            <p>GPTs</p>
+          </div>
+        </div>
+        <div class="text-white text-sm ml-3 font-light ">
+        <div class="flex flex-row items-center gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer ">
+          <i class="fa-regular fa-folder-open"></i>
+            <p>Projects</p>
+            <div class="h-4 w-7 border border-gray-700 text-xs flex justify-center items-center rounded-2xl p-2">new</div>
+          </div>
+        </div>
+        <h1 class="text-[#999999] ml-5 mt-7 text-sm">Chats</h1>
+        <div class="flex flex-col p-3 text-white ">
+     
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">GitHub Bio Ideas </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Workout Routine </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Refund request </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Weight Gain </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Weight Loss </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Short answer with Java </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Jeans color selection guide </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Print in Java </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">GitHub Bio Ideas </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Numerology  </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Data leak vs hacking </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Local varibale explantion </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Share life and body </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Email to college </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Wake up Sound selection </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">GitHub Bio Ideas </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Workout Routine </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Refund request </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Weight Gain </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Weight Loss </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Short answer with Java </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Jeans color selection guide </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Print in Java </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">GitHub Bio Ideas </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Numerology  </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Data leak vs hacking </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Local varibale explantion </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Share life and body </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Email to college </p>
+        <p class="gap-2 p-2 hover:bg-[#303030] rounded-xl cursor-pointer text-sm ">Wake up Sound selection </p>
+
+      </div>
+      </div>
+      
+      <div class="flex flex-row  w-[16vw]  h-[10vh] text-white items-center fixed bottom-0 z-100 bg-[#181818] justify-between pl-3 pr-3 hover:bg-[#242424] ml-1 rounded-xl ">
+          <i class="fas fa-user"></i>
+        <div class="flex flex-col text-sm p-3">
+          <h1 class="text-md">Vansh Vijayva.....</h1>
+          <p class="text-xs text-gray-400">Free</p>
+        </div>
+        <div class="h-[4vh] w-[5vw] border text-md items-center pl-2 rounded-xl hover:bg-[#242424] cursor-pointer">
+          Upgrade
+        </div>
+      </div>
+      </div>
+      <!-- Main  -->
+      <div class="h-[100vh] w-[83vw] bg-[#212121] flex flex-col ">
+        <div class="flex flex-row justify-between p-2"> 
+          <div class="flex flex-row text-white items-center pl-4">
+            <p class="text-lg">ChatGPT</p>
+            <i class="fas fa-angle-down text-sm text-[#AFAFAF]"></i>
+          </div>
+          <div class="h-[5vh] w-[10vw] border flex items-center justify-center rounded-3xl bg-[#414071] border-[#414071] text-[#DCDBF6] font-normal gap-1">
+            <i class="fa-solid fa-diamond text-xs text-[#5856D6]"></i>
+              Upgrade to Go
+          </div>
+          <i class="fa-regular fa-comment text-lg text-white pr-5 pt-3"></i>
+         
+        </div>
+        <h1 class="text-white text-3xl mt-[30vh] ml-[35vw]">
+          What can I help with?
+        </h1>
+        <div class="h-[7vh] border-[#303030] bg-[#303030] w-[52vw] rounded-3xl ml-[17vw] mt-10 flex flex-row justify-between text-md text-white items-center">
+          <i class="fas fa-plus   ml-3 cursor-pointer font-thin hover:bg-[#3B3B3B]  rounded-full"></i>
+          <input type="text" placeholder="Ask anything" class="w-[48vw] ml-3  focus:outline-none" >
+          <i class="fas fa-microphone mr-4 cursor-pointer font-thin"></i>
+          <i class="fa-solid fa-magnifying-glass   mr-2 cursor-pointer font-thin"></i>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
