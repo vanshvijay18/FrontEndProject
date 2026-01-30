@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gmail</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/png" href="Photos/Gmail.png">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="h-[8vh] bg-[#EDF1FA] w-full flex flex-row justify-between">
+     <div class="flex flex-row justify-between gap-[13vw] mt-2 ml-2">
+        <div class="flex flex-row items-center p-3 gap-2">
+          <i class="fa-solid fa-bars text-2xl text-[#444746]"></i>
+        <img src="Photos/Gmail.png " class="h-[5vh]" />
+        <h1 class="text-2xl text-[#444746]">Gmail</h1>
+      </div>
+      <div class="h-[6vh] w-[50vw] gap-3 flex flex-row border-slate-300 bg-slate-300 rounded-3xl " >
+        <i class="fa-solid fa-magnifying-glass mt-4 ml-3 cursor-pointer"></i>
+        <input type="text" placeholder="Search mail" class="w-[55vw] h-[6vh]  placeholder-black focus:outline-none"/>
+        <i class="fa-solid fa-list mt-4 mr-5 cursor-pointer"></i>
+      </div>
+      </div>
+      <div class="text-xl flex flex-row gap-5 mr-4 mt-4 text-gray-700">
+        <i class="fa-regular fa-circle-question cursor-pointer"></i>
+        <i class="fa-solid fa-gear cursor-pointer"></i>
+        <i class="fa-solid fa-star cursor-pointer"></i>
+        <i class="fab fa-buromobelexperte cursor-pointer"></i>
+        <i class="fa-solid fa-circle-user cursor-pointer"></i>
+      </div>
+    </nav>
+    <main class="h-[92vh] bg-[#EDF1FA] w-full flex flex-row">
+      <!-- Side Bar -->
+      <div class="h-[92vh] w-[18vw] bg-[#EDF1FA]">
+        <div class="flex  border bg-[#C2E7FF] border-[#C2E7FF] items-center h-[7vh] w-[10vw] rounded-2xl pl-3 gap-4 mt-5 ml-5 shadow-lg cursor-pointer hover:border-[#C2E7FF] hover:bg-[##C2E7FF]">
+          <i class="fas fa-pen"></i>
+          <p>Compose</p>
+        </div>
+        <div class="flex flex-col gap-2  mt-5 ">
+          <div class="flex flex-row h-[4vh] text-sm w-[17vw] border-[#D3E3FD] cursor-pointer border bg-[#D3E3FD] text-gray-900 items-center rounded-r-2xl pl-7 gap-2 font-bold" >
+            <i class="fas fa-inbox "></i>
+              <p>Inbox </p>
+              <p class="pl-25 text-sm">1269</p>
+          </div>
+          <div class="flex flex-row  text-sm h-[4vh] w-[17vw] hover:border-gray-200 cursor-pointer hover:border hover:bg-gray-200 hover:text-gray-800 items-center rounded-r-2xl pl-7 gap-2 font-medium" >
+              <i class="fas fa-star"></i>
+              <p> Starred</p>
+          </div>
+          <div class="flex flex-row  text-sm h-[4vh] w-[17vw] hover:border-gray-200 cursor-pointer hover:border hover:bg-gray-200 hover:text-gray-800 items-center rounded-r-2xl pl-7 gap-2 font-medium" >
+              <i class="fas fa-clock"></i>
+              <p> Snoozed</p>
+          </div>
+            <div class="flex flex-row  text-sm h-[4vh] w-[17vw] hover:border-gray-200 cursor-pointer hover:border hover:bg-gray-200 hover:text-gray-800 items-center rounded-r-2xl pl-7 gap-2 font-medium" >
+              <i class="fas fa-paper-plane font-normal"></i>
+              <p> Sent</p>
+          </div>
+           <div class="flex flex-row  text-sm h-[4vh] w-[17vw] hover:border-gray-200 cursor-pointer hover:border hover:bg-gray-200 hover:text-gray-800 items-center rounded-r-2xl pl-7 gap-2 font-medium" >
+            <i class="fa-regular fa-file text-lg"></i>
+              <p> Draft</p>
+          </div>
+          <div class="flex flex-row  text-sm h-[4vh] w-[17vw] hover:border-gray-200 cursor-pointer hover:border hover:bg-gray-200 hover:text-gray-800 items-center rounded-r-2xl pl-7 gap-2 font-medium" >
+            <i class="fas fa-angle-down text-lg"></i>
+              <p> More</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 ml-3 mt-5"> 
+         <div class="flex flex-row gap-3 text-sm text-gray-600 items-center justify-between pr-5 pl-5">
+          <p class="text-lg">Labels</p>
+          <i class="fas fa-plus"></i>
+         </div>
+        </div>   
+       
+      </div>
+    <!-- Center  -->
+      <div class="h-[92vh] w-[79vw] bg-white rounded-2xl flex flex-col ">
+        <div class="flex h-[5vh] flex-row justify-between items-center pl-6 pr-3 pt-4 text-gray-600 text-xs ">
+          
+            <div class="flex flex-row gap-3 items-center">
+              <input type="checkbox" class="cursor-pointer">
+              <i class="fas fa-angle-down cursor-pointer"></i>
+              <i class="fas fa-rotate-right cursor-pointer"></i>
+              <i class="fas fa-ellipsis-v cursor-pointer"></i>
+            </div>
+            <div class="flex flex-row gap-3 items-center">
+              <p class="text-xs pr-3">1-50 of 1,269</p>
+              <i class="fas fa-chevron-left cursor-pointer text-gray-200"></i>
+              <i class="fas fa-chevron-right cursor-pointer font-bold"></i>
+            </div>
+          
+        </div>
+        <div flex class="flex h-[10vh] flex-row  gap-7 pl-2 pt-5  pr-3 border-b border-gray-300">
+         <div class="flex flex-row gap-5 items-center border-b-4 border-blue-600 rounded-sm h-[7vh] pl-5 cursor-pointer hover:bg-gray-100 text-blue-600 font-bold w-[15vw]">
+          <i class="fas fa-image"></i>
+          <p>Primary</p>
+         </div>
+         <div class="flex flex-row gap-5 items-center  h-[7vh] cursor-pointer hover:bg-gray-100">
+           <i class="fas fa-tag"></i>
+          <div class="flex flex-col">
+              <p>Promotions</p>
+              <p class="text-xs text-gray-500">Lenovo India- Why Just cel</p>
+            </div>
+           </div>                
+          <div class="flex flex-row gap-5 items-center  h-[7vh] cursor-pointer hover:bg-gray-100">
+            <i class="fas fa-user"></i>
+            <div class="flex flex-col">
+              <p>Social</p>
+              <p class="text-xs text-gray-500">Linkdin-Update to our team</p>
+            </div>
+            </div>
+          <div class="flex flex-row gap-5 items-center  h-[7vh] cursor-pointer hover:bg-gray-100">
+            <i class="fas fa-exclamation"></i>
+             <div class="flex flex-col">
+              <p>Updates</p>
+              <p class="text-xs text-gray-500">Groww Digest - Trumps new ta...</p>
+            </div>
+        </div>
+       
+     
+      </div>
+      <div class="grid grid-col h-[77vh] overflow-y-scroll ">
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+              <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300 bg-[#F2F6FC] hover:bg-[#F2F6FC] cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Payment Reminder - Hi Suman, Your prepaid recharge bill payment dua on 29 sept 2025 Hi suman,Your prepaid recharge bill p...</p>
+        <p class="pl-29 text-sm">09:07</p>
+       </div>
+      <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-md">Amazone Pay India</p>
+        </div>
+        <p class="pl-14 text-sm">Your payment of 346rs to Freedo Rentals was SuccessFul -hi Suman your Payment to Freedo Rentals was Approves........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+       <div class="flex flex-row  items-center w-full pl-3 pr-3 h-[5vh] text-gray-600  border-b border-gray-300   cursor-pointer">
+       <div class="flex flex-row gap-2 items-center">
+        <input type="checkbox" >
+        <i class="fas fa-star text-sm"></i>
+        <p class="text-sm">Amazone.in</p>
+        </div>
+        <p class="pl-29 text-sm">amazon.in Sign in attempt - Suman Someone with access to your phone is attempting to sign in to your account w........</p>
+        <p class="pl-43.5 text-sm">09:07</p>
+       </div>
+
+      </div>
+      </div>
+      <!-- Right Bar -->
+      <div class="h-[92vh] w-[3vw] bg-[#EDF1FA] flex flex-col ">
+      
+          <div class="cursor-pointer"><img src="Photos/Calender.png"  class="h-15"  ></div>
+          <div class="cursor-pointer"><img src="Photos/Bulb.png"  class="h-15 " ></div>
+          <div class="cursor-pointer"><img src="Photos/tick.png"  class="h-15 " ></div>
+          <div class="cursor-pointer"><img src="Photos/Profile.png" class="h-15 "  ></div>
+          <div class="pl-3 pt-5 cursor-pointer"><i class="fas fa-plus"></i></div>
+      
+      </div>
+    </main>
+  </body>
+</html>
