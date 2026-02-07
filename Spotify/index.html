@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify Clone</title>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="https://open.spotify.com/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      /* Hide scrollbar by default */
+      .scrollbar-custom {
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .scrollbar-custom::-webkit-scrollbar {
+        width: 0; /* Chrome, Safari, Edge */
+        background: transparent; /* Hide scrollbar */
+      }
+
+      /* Show scrollbar on hover */
+      .scrollbar-custom:hover {
+        scrollbar-width: thin; /* Firefox */
+        scrollbar-color: #4b5563 #1f2937; /* Firefox */
+      }
+
+      .scrollbar-custom:hover::-webkit-scrollbar {
+        width: 8px; /* Chrome, Safari, Edge */
+      }
+
+      .scrollbar-custom:hover::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 4px;
+      }
+
+      .scrollbar-custom:hover::-webkit-scrollbar-thumb {
+        background-color: #4b5563;
+        border-radius: 4px;
+      }
+
+      .gradient-overlay {
+        background: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+
+      .play-button {
+        opacity: 0;
+        transform: translateY(8px);
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover .play-button {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-container {
+        height: calc(100vh - 144px);
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white min-h-screen">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800/50"
+    >
+      <div class="flex items-center justify-between px-6 py-2">
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <i class="fab fa-spotify text-white text-3xl"></i>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex-1 max-w-lg mx-6">
+          <div class="hidden md:flex justify-center items-center gap-4 w-full">
+            <!-- Home Button -->
+            <button
+              class="p-2 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              <svg
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                class="text-white hover:text-gray-400 w-6 h-6"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732z"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Search Input -->
+            <div
+              class="flex items-center bg-gray-700 rounded-full px-3 py-2 w-full"
+            >
+              <i class="fas fa-search text-white mr-2"></i>
+              <input
+                type="text"
+                class="bg-transparent w-full text-gray-300 focus:outline-none"
+                placeholder="What do you want to play?"
+              />
+              <!-- Library Button -->
+              <div>
+                <button
+                  class="p-2 rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  <svg
+                    data-encore-id="icon"
+                    role="img"
+                    aria-hidden="true"
+                    class="text-white hover:text-gray-400 w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M15 15.5c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2"
+                    ></path>
+                    <path
+                      d="M1.513 9.37A1 1 0 0 1 2.291 9h19.418a1 1 0 0 1 .979 1.208l-2.339 11a1 1 0 0 1-.978.792H4.63a1 1 0 0 1-.978-.792l-2.339-11a1 1 0 0 1 .201-.837zM3.525 11l1.913 9h13.123l1.913-9zM4 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4h-2V3H6v3H4z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Search (hidden on larger screens) -->
+          <div class="md:hidden relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+              <i class="fas fa-search text-gray-400"></i>
+            </div>
+            <input
+              type="text"
+              placeholder="What do you want to play?"
+              class="w-full bg-gray-800 text-white placeholder-gray-400 rounded-full py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-gray-700 transition-all"
+            />
+          </div>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="flex items-center space-x-5">
+          <button
+            class="hidden md:inline-flex bg-white text-black px-3 py-1 rounded-full font-semibold hover:scale-105 transition-transform"
+          >
+            Explore Premium
+          </button>
+          <button
+            class="hidden sm:inline-flex text-gray-300 hover:text-white font-semibold"
+          >
+            <svg
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="e-91000-icon e-91000-baseline w-4 h-4 invert mt-1 mr-1"
+              viewBox="0 0 16 16"
+              style="
+                --encore-icon-height: var(
+                  --encore-graphic-size-decorative-smaller
+                );
+                --encore-icon-width: var(
+                  --encore-graphic-size-decorative-smaller
+                );
+              "
+            >
+              <path
+                d="M4.995 8.745a.75.75 0 0 1 1.06 0L7.25 9.939V4a.75.75 0 0 1 1.5 0v5.94l1.195-1.195a.75.75 0 1 1 1.06 1.06L8 12.811l-.528-.528-.005-.005-2.472-2.473a.75.75 0 0 1 0-1.06"
+              ></path>
+              <path
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13"
+              ></path>
+            </svg>
+            Install App
+          </button>
+          <div class="flex items-center space-x-3">
+            <button class="text-gray-500 hover:text-white">
+              <svg
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                class="e-91000-icon e-91000-baseline w-4 h-4 invert"
+                viewBox="0 0 16 16"
+                style="
+                  --encore-icon-height: var(
+                    --encore-graphic-size-decorative-smaller
+                  );
+                  --encore-icon-width: var(
+                    --encore-graphic-size-decorative-smaller
+                  );
+                "
+              >
+                <path
+                  d="M3.849 10.034c-.021-.465.026-.93.139-1.381H1.669c.143-.303.375-.556.665-.724l.922-.532a1.63 1.63 0 0 0 .436-2.458 1.8 1.8 0 0 1-.474-1.081q-.014-.287.057-.563a1.12 1.12 0 0 1 .627-.7 1.2 1.2 0 0 1 .944 0q.225.1.392.281c.108.12.188.263.237.417q.074.276.057.561a1.8 1.8 0 0 1-.475 1.084 1.6 1.6 0 0 0-.124 1.9c.36-.388.792-.702 1.272-.927v-.015c.48-.546.768-1.233.821-1.958a3.2 3.2 0 0 0-.135-1.132 2.657 2.657 0 0 0-5.04 0c-.111.367-.157.75-.135 1.133.053.724.341 1.41.821 1.955A.13.13 0 0 1 2.565 6a.13.13 0 0 1-.063.091l-.922.532A3.2 3.2 0 0 0-.004 9.396v.75h3.866c.001-.033-.01-.071-.013-.112m10.568-3.4-.922-.532a.13.13 0 0 1-.064-.091.12.12 0 0 1 .028-.1c.48-.546.768-1.233.821-1.958a3.3 3.3 0 0 0-.135-1.135A2.64 2.64 0 0 0 12.7 1.233a2.67 2.67 0 0 0-3.042.64 2.65 2.65 0 0 0-.554.948c-.11.367-.156.75-.134 1.133.053.724.341 1.41.821 1.955.005.006 0 .011 0 .018.48.225.911.54 1.272.927a1.6 1.6 0 0 0-.125-1.907 1.8 1.8 0 0 1-.474-1.081q-.015-.287.057-.563a1.12 1.12 0 0 1 .627-.7 1.2 1.2 0 0 1 .944 0q.225.1.392.281.162.182.236.413c.05.184.07.375.058.565a1.8 1.8 0 0 1-.475 1.084 1.633 1.633 0 0 0 .438 2.456l.922.532c.29.169.52.421.664.724h-2.319c.113.452.16.918.139 1.383 0 .04-.013.078-.017.117h3.866v-.75a3.2 3.2 0 0 0-1.58-2.778v.004zm-3.625 6-.922-.532a.13.13 0 0 1-.061-.144.1.1 0 0 1 .025-.047 3.33 3.33 0 0 0 .821-1.958 3.2 3.2 0 0 0-.135-1.132 2.657 2.657 0 0 0-5.041 0c-.11.367-.156.75-.134 1.133.053.724.341 1.41.821 1.955a.13.13 0 0 1 .028.106.13.13 0 0 1-.063.091l-.922.532a3.2 3.2 0 0 0-1.584 2.773v.75h8.75v-.75a3.2 3.2 0 0 0-1.583-2.781zm-5.5 2.023c.143-.303.375-.556.665-.724l.922-.532a1.63 1.63 0 0 0 .436-2.458 1.8 1.8 0 0 1-.474-1.081q-.015-.287.057-.563a1.12 1.12 0 0 1 .627-.7 1.2 1.2 0 0 1 .944 0q.225.1.392.281c.108.12.188.263.237.417q.073.276.057.561a1.8 1.8 0 0 1-.475 1.084 1.632 1.632 0 0 0 .438 2.456l.922.532c.29.169.52.421.664.724z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="flex items-center space-x-3">
+            <i
+              class="far fa-bell text-xl text-gray-500 hover:text-white cursor-pointer transition-colors"
+            ></i>
+            <div
+              class="w-8 h-8 bg-[#ff6437] rounded-full flex items-center justify-center cursor-pointer"
+            >
+              J
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen pb-24">
+      <!-- Left Sidebar -->
+      <aside
+        class="section-container w-96 bg-[#121212] p-6 hidden lg:block overflow-y-auto scrollbar-custom rounded-lg ml-2 mb-2"
+      >
+        <!-- Your Library -->
+        <div class="mb-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2
+              class="text-xl font-bold text-gray-300 flex items-center gap-2 group relative"
+            >
+              <!-- SVG that appears with transition on hover -->
+              <svg
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                class="text-gray-300 w-4 h-4 transform -translate-x-6 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M10.97 5.47a.75.75 0 1 1 1.06 1.06L10.56 8l1.47 1.47a.75.75 0 1 1-1.06 1.06l-2-2a.75.75 0 0 1 0-1.06z"
+                  fill="currentColor"
+                ></path>
+                <path
+                  d="M1 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm.5 1.5H5v13H1.5zm13 13h-8v-13h8z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <!-- Your Library text that moves slightly -->
+              <span
+                class="transform group-hover:translate-x-2 transition-transform duration-300"
+              >
+                Your Library
+              </span>
+            </h2>
+            <div class="flex items-center gap-2">
+              <button
+                class="bg-gray-700 hover:bg-gray-600 py-1 px-3 rounded-full transition-colors text-sm"
+              >
+                <i class="fas fa-plus text-xs mr-2"></i>Create
+              </button>
+              <button
+                class="p-2 rounded-full hover:bg-gray-700 transition-colors"
+              >
+                <svg
+                  data-encore-id="icon"
+                  role="img"
+                  aria-hidden="true"
+                  class="text-gray-300 hover:text-white w-4 h-4"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6.53 9.47a.75.75 0 0 1 0 1.06l-2.72 2.72h1.018a.75.75 0 0 1 0 1.5H1.25v-3.579a.75.75 0 0 1 1.5 0v1.018l2.72-2.72a.75.75 0 0 1 1.06 0zm2.94-2.94a.75.75 0 0 1 0-1.06l2.72-2.72h-1.018a.75.75 0 1 1 0-1.5h3.578v3.579a.75.75 0 0 1-1.5 0V3.81l-2.72 2.72a.75.75 0 0 1-1.06 0"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div class="flex space-x-2 mb-6">
+            <button
+              class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm transition-colors"
+            >
+              Playlists
+            </button>
+            <button
+              class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm transition-colors"
+            >
+              Artists
+            </button>
+          </div>
+
+          <!-- Search Library -->
+          <div class="relative mb-6">
+            <i
+              class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10"
+            ></i>
+
+            <div
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center text-gray-400 text-sm"
+            >
+              Recents
+              <svg
+                data-encore-id="icon"
+                role="img"
+                aria-hidden="true"
+                class="ml-1 w-4 h-4"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M15 14.5H5V13h10zm0-5.75H5v-1.5h10zM15 3H5V1.5h10zM3 3H1V1.5h2zm0 11.5H1V13h2zm0-5.75H1v-1.5h2z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Library Items -->
+          <div class="space-y-2">
+            <!-- Liked Songs -->
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group mt-[3rem]"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-heart text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold group-hover:text-white">
+                  Liked Songs
+                </h4>
+                <p class="text-sm text-gray-400">31 songs</p>
+              </div>
+            </div>
+            <!-- Artist Items -->
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://res.cloudinary.com/dwzmsvp7f/image/upload/f_auto/c_crop%2Cg_custom/v1728462701/yiwwlrbe78ahhohjjmum.jpg"
+                alt="Arijit Singh"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div>
+                <h4 class="font-semibold group-hover:text-white">
+                  Arijit Singh
+                </h4>
+                <p class="text-sm text-gray-400">Artist</p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://cdn.dnaindia.com/sites/default/files/2023/05/19/7092727-atif-aslam-20-years.jpg?im=FitAndFill=(1200,900)"
+                alt="Atif Aslam"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div>
+                <h4 class="font-semibold group-hover:text-white">Atif Aslam</h4>
+                <p class="text-sm text-gray-400">Artist</p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://tse3.mm.bing.net/th/id/OIP.XaXYTvnNaZmsBpww7wyROQHaGj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="Rahat Fateh Ali Khan"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div>
+                <h4 class="font-semibold group-hover:text-white">
+                  Rahat Fateh Ali Khan
+                </h4>
+                <p class="text-sm text-gray-400">Artist</p>
+              </div>
+            </div>
+
+            <!-- Additional items from the image -->
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-music text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold group-hover:text-whiteD night</h4>
+                <p class="text-sm text-gray-400">Playlist - pulkit soul</p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-red-500 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-music text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold group-hover:text-white">Bhajan</h4>
+                <p class="text-sm text-gray-400">Playlist - Jatin</p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-music text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold group-hover:text-white">Sung</h4>
+                <p class="text-sm text-gray-400">Playlist - Jatin.sooi</p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-md flex items-center justify-center mr-3"
+              >
+                <i class="fas fa-music text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold group-hover:text-white">ALL IN ONE</h4>
+                <p class="text-sm text-gray-400">Playlist - Jatin.sooi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Middle Content Area -->
+      <main
+        class="section-container flex-1 bg-gradient-to-b from-gray-800 to-black p-6 overflow-y-auto scrollbar-custom rounded-lg mx-2 mb-2"
+      >
+        <!-- Category Pills -->
+        <div class="flex space-x-3 mb-8">
+          <button
+            class="bg-white text-black px-4 py-2 rounded-full font-semibold"
+          >
+            All
+          </button>
+          <button
+            class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-full font-semibold transition-colors"
+          >
+            Music
+          </button>
+          <button
+            class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-full font-semibold transition-colors"
+          >
+            Podcasts
+          </button>
+        </div>
+
+        <!-- Recently Played -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-6">Recently Played</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://misc.scdn.co/liked-songs/liked-songs-640.jpg"
+                alt="Liked Songs"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">Liked Songs</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="photos/raat.png"
+                alt="Bollywood Hits"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">Raat ke Shikari</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="photos/LoveSongs.png"
+                alt="Discover Weekly"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">Love Songs💖❣️</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="photos/Bollywood.png"
+                alt="Bollywood Hits"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">90s bollywood</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="photos/Gym.png"
+                alt="Bollywood Hits"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">Gym workout</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://mosaic.scdn.co/640/ab67616d00001e025e003fa112e192449808acb4ab67616d00001e02955ac4be6c7eeed39e816f69ab67616d00001e02b5db9fac30bd158408f1b477ab67616d00001e02f3fc30f8de2b9af946dfad71"
+                alt="Bollywood Hits"
+                class="w-16 h-16 object-cover"
+              />
+              <span class="px-4 font-semibold">Bhajan</span>
+              <div class="ml-auto pr-4 play-button">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Made For You -->
+        <section class="mb-12">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-3xl font-bold">Made For Vansh</h2>
+            <button class="text-gray-400 hover:text-white font-semibold">
+              Show all
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+          >
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer relative group"
+            >
+              <div class="relative">
+                <img
+                  src="photos/LoveSongs.png"
+                  alt="Daily Mix 1"
+                  class="w-full aspect-square object-cover rounded-md mb-4"
+                />
+                <div class="play-button absolute bottom-2 right-2">
+                  <div
+                    class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
+                    <i class="fas fa-play text-black ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-bold mb-1">Daily Mix 1</h3>
+              <p class="text-sm text-gray-400 line-clamp-2">
+                Arijit Singh, Rahat Fateh Ali Khan, Atif Aslam and more
+              </p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer relative group"
+            >
+              <div class="relative">
+                <img
+                  src="	https://image-cdn-fa.spotifycdn.com/image/ab67706c0000d72c212140d15baa01a159fa69d1"
+                  alt="Daily Mix 2"
+                  class="w-full aspect-square object-cover rounded-md mb-4"
+                />
+                <div class="play-button absolute bottom-2 right-2">
+                  <div
+                    class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
+                    <i class="fas fa-play text-black ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-bold mb-1">Daily Mix 2</h3>
+              <p class="text-sm text-gray-400 line-clamp-2">
+                Atif Aslam, KK, Sonu Nigam and more
+              </p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer relative group"
+            >
+              <div class="relative">
+                <img
+                  src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/38562b170749351.64637a005c03b.jpg"
+                  alt="Discover Weekly"
+                  class="w-full aspect-square object-cover rounded-md mb-4"
+                />
+                <div class="play-button absolute bottom-2 right-2">
+                  <div
+                    class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
+                    <i class="fas fa-play text-black ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-bold mb-1">Discover Weekly</h3>
+              <p class="text-sm text-gray-400 line-clamp-2">
+                Your weekly mixtape of fresh music
+              </p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer relative group"
+            >
+              <div class="relative">
+                <img
+                  src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fe529a64193929.5aca8500ba9ab.jpg"
+                  alt="Release Radar"
+                  class="w-full aspect-square object-cover rounded-md mb-4"
+                />
+                <div class="play-button absolute bottom-2 right-2">
+                  <div
+                    class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
+                    <i class="fas fa-play text-black ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-bold mb-1">Release Radar</h3>
+              <p class="text-sm text-gray-400 line-clamp-2">
+                Catch all the latest music from artists you follow
+              </p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer relative group"
+            >
+              <div class="relative">
+                <img
+                  src="https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/1e/ff/32/1eff3216-190d-6fd9-8f68-acbba846e6ee/8903431956026_cover.jpg/1200x1200bf-60.jpg"
+                  alt="On Repeat"
+                  class="w-full aspect-square object-cover rounded-md mb-4"
+                />
+                <div class="play-button absolute bottom-2 right-2">
+                  <div
+                    class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+                  >
+                    <i class="fas fa-play text-black ml-1"></i>
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-bold mb-1">On Repeat</h3>
+              <p class="text-sm text-gray-400 line-clamp-2">
+                Songs you can't stop playing
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Popular Artists -->
+        <section class="mb-12">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-3xl font-bold">Popular Artists</h2>
+            <button class="text-gray-400 hover:text-white font-semibold">
+              Show all
+            </button>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-6"
+          >
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://res.cloudinary.com/dwzmsvp7f/image/upload/f_auto/c_crop%2Cg_custom/v1728462701/yiwwlrbe78ahhohjjmum.jpg"
+                alt="Arijit Singh"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Arijit Singh</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://cdn.dnaindia.com/sites/default/files/2023/05/19/7092727-atif-aslam-20-years.jpg?im=FitAndFill=(1200,900)"
+                alt="Atif Aslam"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Atif Aslam</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://tse3.mm.bing.net/th/id/OIP.XaXYTvnNaZmsBpww7wyROQHaGj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="Rahat Fateh Ali Khan"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Rahat Fateh Ali Khan</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://tse2.mm.bing.net/th/id/OIP.GZhXhpNMxS4jSJbHmCMYeQHaI-?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                alt="Neha Kakkar"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Neha Kakkar</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://i0.wp.com/www.socialnews.xyz/wp-content/uploads/2018/09/08/0d65c1f35866a91500513dccf43be8b9.jpg?quality=80&zoom=1&ssl=1"
+                alt="Badshah"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Badshah</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+
+            <div
+              class="card-hover bg-gray-900/50 p-4 rounded-lg cursor-pointer text-center"
+            >
+              <img
+                src="https://i.scdn.co/image/ab6761610000e5ebbc7e4fffd515b47ff1ebbc1f"
+                alt="Honey Singh"
+                class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover"
+              />
+              <h3 class="font-bold">Honey Singh</h3>
+              <p class="text-sm text-gray-400">Artist</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Right Sidebar -->
+      <aside
+        class="section-container w-96 bg-[#121212] p-6 hidden xl:block overflow-y-auto scrollbar-custom rounded-lg mr-2 mb-2"
+      >
+        <!-- Now Playing View -->
+        <div>
+          <h2 class="text-xl font-bold text-gray-300 mb-6">Now Playing View</h2>
+
+          <div
+            class="bg-gradient-to-br from-purple-900 to-gray-900 rounded-lg p-4"
+          >
+            <img
+src="photos/Badlapur.jpg"              alt="Album"
+              class="w-full aspect-square object-cover rounded-md mb-4"
+            />
+
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <h3 class="font-bold text-lg">Jee Karda</h3>
+                <p class="text-gray-400">(Rock Version)</p>
+              </div>
+              <i class="far fa-heart text-green-500 text-xl"></i>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="mb-4">
+              <div
+                class="flex items-center justify-between text-xs text-gray-400 mb-1"
+              >
+                <span>1:23</span>
+                <span>3:45</span>
+              </div>
+              <div class="w-full bg-gray-700 h-1 rounded-full">
+                <div class="bg-white h-1 rounded-full" style="width: 35%"></div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center justify-between">
+              <i class="fas fa-random text-gray-400"></i>
+              <div class="flex items-center space-x-6">
+                <i class="fas fa-step-backward text-gray-400 text-xl"></i>
+                <div
+                  class="w-10 h-10 bg-white rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-play text-black ml-1"></i>
+                </div>
+                <i class="fas fa-step-forward text-gray-400 text-xl"></i>
+              </div>
+              <i class="fas fa-redo text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Friend Activity -->
+        <div class="my-8">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold text-gray-300 flex items-center">
+              <i class="fas fa-user-friends mr-3"></i>
+              Friend Activity
+            </h2>
+            <button
+              class="bg-gray-700 hover:bg-gray-600 p-2 rounded-full transition-colors"
+            >
+              <i class="fas fa-cog text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Friend Activities -->
+          <div class="space-y-4">
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Friend"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div class="flex-1">
+                <h4 class="font-semibold group-hover:text-white">
+                  Alex Johnson
+                </h4>
+                <p class="text-sm text-gray-400">
+                  Listening to <span class="text-white">Blinding Lights</span>
+                </p>
+              </div>
+              <img
+                src="https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36"
+                alt="Song"
+                class="w-10 h-10 rounded"
+              />
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="Friend"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div class="flex-1">
+                <h4 class="font-semibold group-hover:text-white">
+                  Sarah Miller
+                </h4>
+                <p class="text-sm text-gray-400">
+                  Listening to <span class="text-white">Save Your Tears</span>
+                </p>
+              </div>
+              <img
+                src="https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0"
+                alt="Song"
+                class="w-10 h-10 rounded"
+              />
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://randomuser.me/api/portraits/men/22.jpg"
+                alt="Friend"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div class="flex-1">
+                <h4 class="font-semibold group-hover:text-white">
+                  Michael Chen
+                </h4>
+                <p class="text-sm text-gray-400">
+                  Listening to <span class="text-white">Stay</span>
+                </p>
+              </div>
+              <img
+                src="https://i.scdn.co/image/ab67616d0000b2731c1ea5bfa5680ac877acdd55"
+                alt="Song"
+                class="w-10 h-10 rounded"
+              />
+            </div>
+
+            <div
+              class="flex items-center p-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-colors group"
+            >
+              <img
+                src="https://randomuser.me/api/portraits/women/68.jpg"
+                alt="Friend"
+                class="w-12 h-12 rounded-full mr-3"
+              />
+              <div class="flex-1">
+                <h4 class="font-semibold group-hover:text-white">
+                  Jessica Brown
+                </h4>
+                <p class="text-sm text-gray-400">
+                  Listening to <span class="text-white">Heat Waves</span>
+                </p>
+              </div>
+              <img
+                src="https://i.scdn.co/image/ab67616d0000b2731c3e0e57b891d624e7d7bff3"
+                alt="Song"
+                class="w-10 h-10 rounded"
+              />
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Player Bar -->
+    <footer
+      class="fixed bottom-0 left-0 right-0 bg-black border-t border-gray-800 p-4"
+    >
+      <div class="flex items-center justify-between">
+        <!-- Now Playing -->
+        <div class="flex items-center space-x-3 w-1/4">
+          <img
+            src="photos/Badlapur.jpg"
+            alt="Current Song"
+            class="w-14 h-14 rounded-md"
+          />
+          <div>
+            <h4 class="font-semibold">Jee karda (Rock version)</h4>
+            <p class="text-sm text-gray-400">Divya Kumar</p>
+          </div>
+          <i
+            class="fa-solid fa-circle-plus text-gray-500 hover:scale-110 cursor-pointer transition-transform"
+          ></i>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="flex flex-col items-center w-1/2">
+          <div class="flex items-center space-x-6 mb-2">
+            <i
+              class="fas fa-random text-gray-400 hover:text-white cursor-pointer transition-colors"
+            ></i>
+            <i
+              class="fas fa-step-backward text-gray-400 hover:text-white cursor-pointer transition-colors text-xl"
+            ></i>
+            <div
+              class="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 cursor-pointer transition-transform"
+            >
+              <i class="fas fa-play text-black ml-1"></i>
+            </div>
+            <i
+              class="fas fa-step-forward text-gray-400 hover:text-white cursor-pointer transition-colors text-xl"
+            ></i>
+            <i
+              class="fas fa-redo text-gray-400 hover:text-white cursor-pointer transition-colors"
+            ></i>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="flex items-center space-x-2 w-full">
+            <span class="text-xs text-gray-400">1:23</span>
+            <div class="flex-1 bg-gray-600 h-1 rounded-full">
+              <div class="bg-white h-1 rounded-full" style="width: 30%"></div>
+            </div>
+            <span class="text-xs text-gray-400">3:45</span>
+          </div>
+        </div>
+
+        <!-- Volume Controls -->
+        <div class="flex items-center space-x-3 w-1/4 justify-end">
+          <i
+            class="fas fa-list-ul text-gray-400 hover:text-white cursor-pointer transition-colors"
+          ></i>
+          <i
+            class="fas fa-desktop text-gray-400 hover:text-white cursor-pointer transition-colors"
+          ></i>
+          <i
+            class="fas fa-volume-up text-gray-400 hover:text-white cursor-pointer transition-colors"
+          ></i>
+          <div class="w-24 bg-gray-600 h-1 rounded-full">
+            <div class="bg-white h-1 rounded-full" style="width: 70%"></div>
+          </div>
+          <i
+            class="fas fa-expand-arrows-alt text-gray-400 hover:text-white cursor-pointer transition-colors"
+          ></i>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>
